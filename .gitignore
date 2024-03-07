@@ -159,16 +159,22 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# SemToR-custom ignors
+# Custom ignore rules for SemToR
 evaluation_results/
 model_checkpoints/
 models/
 
+# Ignore everything in the data directory
 data/*
+# Except for the directories themselves (so they can contain .gitkeep)
 !data/geonames/
 !data/texts/
 
+# Ignore contents of these directories, but keep .gitkeep files
 data/geonames/*
 data/texts/*
+!data/geonames/.gitkeep
+!data/texts/.gitkeep
 
+# Specific files to ignore
 toponym_index.pkl
