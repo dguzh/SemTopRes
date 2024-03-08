@@ -51,14 +51,13 @@ def build_toponym_index(gazetteer_df: pd.DataFrame, file_path: str = 'toponym_in
 
     # Build the index from scratch if no file exists
     toponym_index = {}
-    for _, row in tqdm(gazetteer_df.iterrows(), total=gazetteer_df.shape[0]):
-        # Compile location names as well as alternate names
-        toponyms = [normalize_toponym(row['name'])] + [normalize_toponym(toponym) for toponym in row['alternatenames'].split(',')] if pd.notna(row['alternatenames']) else [normalize_toponym(row['name'])]
+    for row in tqdm(gazetteer_df.itertuples(index=False), total=len(gazetteer_df)):
+        toponyms = [normalize_toponym(row.name)] + [normalize_toponym(toponym) for toponym in row.alternatenames.split(',')] if pd.notna(row.alternatenames) else [normalize_toponym(row.name)]
         for toponym in toponyms:
             if toponym in toponym_index:
-                toponym_index[toponym].add(row['geonameid'])
+                toponym_index[toponym].add(row.geonameid)
             else:
-                toponym_index[toponym] = {row['geonameid']}
+                toponym_index[toponym] = {row.geonameid}
 
     # Save the newly built index to the specified file
     with open(file_path, 'wb') as f:

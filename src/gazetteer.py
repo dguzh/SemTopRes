@@ -4,24 +4,35 @@ import numpy as np
 
 def load_gazetteer(file_path: str) -> pd.DataFrame:
     """
-    Loads gazetteer data from a tab-delimited text file into a DataFrame.
+    Loads gazetteer data from a tab-delimited text file into a DataFrame, processing in chunks,
+    excluding unnecessary columns, assuming the file does not have headers.
 
     Args:
         file_path (str): The path to the tab-delimited text file.
 
     Returns:
-        pd.DataFrame: A DataFrame containing the gazetteer data.
+        pd.DataFrame: A DataFrame containing the gazetteer data, minus the excluded columns.
     """
 
-    COLS = ['geonameid', 'name', 'asciiname', 'alternatenames', 'latitude', 'longitude', 
-            'feature_class', 'feature_code', 'country_code', 'cc2', 'admin1_code', 'admin2_code', 
-            'admin3_code', 'admin4_code', 'population', 'elevation', 'dem', 'timezone', 
-            'modification_date']
+    # Full list of columns based on the file's structure
+    FULL_COLS = ['geonameid', 'name', 'asciiname', 'alternatenames', 'latitude', 'longitude', 
+                 'feature_class', 'feature_code', 'country_code', 'cc2', 'admin1_code', 'admin2_code', 
+                 'admin3_code', 'admin4_code', 'population', 'elevation', 'dem', 'timezone', 
+                 'modification_date']
     
+    # Columns to keep
+    COLS_TO_LOAD = ['geonameid', 'name', 'alternatenames', 'latitude', 'longitude', 
+                 'feature_class', 'feature_code', 'country_code', 'admin1_code',
+                 'admin2_code', 'admin3_code', 'admin4_code', 'population']
+
     DTYPE = {'geonameid': int}
 
-    gazetteer_df = pd.read_csv(file_path, delimiter='\t', names=COLS, low_memory=False, 
-                                   usecols=COLS, dtype=DTYPE, keep_default_na=False)
+    chunk_size = 1000000  # Adjust based on your system's memory capacity.
+    chunks = pd.read_csv(file_path, delimiter='\t', names=FULL_COLS, low_memory=False, 
+                         usecols=COLS_TO_LOAD, dtype=DTYPE, keep_default_na=False, chunksize=chunk_size)
+
+    # Concatenate chunks into one DataFrame
+    gazetteer_df = pd.concat(chunks, ignore_index=True)
 
     return gazetteer_df
 
