@@ -25,7 +25,12 @@ def load_gazetteer(file_path: str) -> pd.DataFrame:
                  'feature_class', 'feature_code', 'country_code', 'admin1_code',
                  'admin2_code', 'admin3_code', 'admin4_code', 'population']
 
-    DTYPE = {'geonameid': int}
+    DTYPE = {
+        'geonameid': 'int32',
+        'population': 'int64',
+        'latitude': 'float32',
+        'longitude': 'float32'
+    }
 
     chunk_size = 1000000  # Adjust based on your system's memory capacity.
     chunks = pd.read_csv(file_path, delimiter='\t', names=FULL_COLS, low_memory=False, 
@@ -33,6 +38,11 @@ def load_gazetteer(file_path: str) -> pd.DataFrame:
 
     # Concatenate chunks into one DataFrame
     gazetteer_df = pd.concat(chunks, ignore_index=True)
+
+    # Convert GeoName codes into categories
+    category_columns = ['feature_class', 'feature_code', 'country_code', 'admin1_code', 'admin2_code', 'admin3_code', 'admin4_code']
+    for col in category_columns:
+        gazetteer_df[col] = gazetteer_df[col].astype('category')
 
     return gazetteer_df
 
