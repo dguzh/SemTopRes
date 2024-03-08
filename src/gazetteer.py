@@ -21,7 +21,7 @@ def load_gazetteer(file_path: str) -> pd.DataFrame:
     DTYPE = {'geonameid': int}
 
     gazetteer_df = pd.read_csv(file_path, delimiter='\t', names=COLS, low_memory=False, 
-                                   usecols=COLS, dtype=DTYPE)
+                                   usecols=COLS, dtype=DTYPE, keep_default_na=False)
 
     return gazetteer_df
 

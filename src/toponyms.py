@@ -5,8 +5,7 @@ from nltk.tokenize import sent_tokenize
 from transformers import AutoTokenizer
 
 
-if not nltk.data.find('tokenizers/punkt'):
-    nltk.download('punkt')
+nltk.download('punkt')
 
 
 def load_toponyms(file_path: str) -> pd.DataFrame:
