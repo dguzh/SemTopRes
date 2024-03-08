@@ -6,3 +6,91 @@ We introduce a new approach to toponym resolution, leveraging transformer-based 
 
 ## Demonstration
 For a practical demonstration of our approach, we have prepared the `demo.ipynb` notebook. It provides a step-by-step overview of the entire process, from data preparation and pre-processing to model fine-tuning and evaluation.
+
+## Setup Instructions
+
+Follow these steps to set up your environment and run the `demo.ipynb` notebook.
+
+### 1. Clone the Repository
+
+Clone the repository into your desired directory:
+
+```
+git clone https://github.com/dguzh/SemToR.git
+cd SemToR
+```
+
+### 2. Setting Up the Jupyter Notebook Environment
+
+Ensure you have a Jupyter notebook environment installed. If not, you can install JupyterLab using pip:
+
+```
+pip3 install jupyterlab
+```
+
+### 3. Creating a Virtual Environment
+
+Create a virtual environment in the directory:
+
+For **Linux/macOS**:
+```
+python3 -m venv myenv
+```
+
+For **Windows**:
+```
+python -m venv myenv
+```
+
+Replace `myenv` with your preferred name for the virtual environment.
+
+### 4. Activating the Virtual Environment
+
+Activate the virtual environment:
+
+On **Linux/macOS**:
+```
+source myenv/bin/activate
+```
+
+On **Windows**:
+```
+myenv\Scripts\activate
+```
+
+### 5. Installing Dependencies
+
+Install the required Python libraries:
+
+```
+pip3 install -r requirements.txt
+```
+
+**Note**: The provided `requirements.txt` is configured for CPU usage, which may result in slow performance. For better performance, we strongly recommend using a CUDA-enabled GPU. Follow these additional steps for GPU support:
+
+- Install CUDA from [NVIDIA's CUDA Downloads Page](https://developer.nvidia.com/cuda-downloads).
+- Install PyTorch with CUDA 12.1 support by following instructions specific to your device at [PyTorch's Get Started Page](https://pytorch.org/get-started/locally/).
+
+### 6. Adding Your Virtual Environment to Jupyter
+
+Add your virtual environment to your Jupyter environment:
+
+```
+python -m ipykernel install --user --name=myenv
+```
+
+Replace `myenv` with the name of your virtual environment.
+
+### 7. Launching JupyterLab
+
+Launch JupyterLab:
+
+```
+jupyter lab
+```
+
+### 8. Running the Notebook
+
+In JupyterLab, navigate to `demo.ipynb`. Make sure to switch the notebook's kernel to your virtual environment to access the installed dependencies.
+
+You're now ready to run the code in `demo.ipynb`.
