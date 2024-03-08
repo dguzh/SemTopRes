@@ -16,8 +16,11 @@ Follow these steps to set up your environment and run the `demo.ipynb` notebook.
 Clone the repository into your desired directory:
 
 ```
-git clone https://github.com/dguzh/SemToR.git
-cd SemToR
+git clone https://github.com/dguzh/SemTopRes.git
+```
+
+```
+cd SemTopRes
 ```
 
 ### 2. Setting Up the Jupyter Notebook Environment
@@ -26,6 +29,12 @@ Ensure you have a Jupyter notebook environment installed. If not, you can instal
 
 ```
 pip3 install jupyterlab
+```
+
+Also make sure to have ipywidgets installed to correctly display progress bars:
+
+```
+pip3 install ipywidgets
 ```
 
 ### 3. Creating a Virtual Environment

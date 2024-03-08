@@ -5,7 +5,7 @@ import pandas as pd
 import pickle
 import requests
 import inflect
-from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 
 def normalize_toponym(toponym: str) -> str:
