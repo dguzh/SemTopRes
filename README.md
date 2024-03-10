@@ -23,21 +23,7 @@ git clone https://github.com/dguzh/SemTopRes.git
 cd SemTopRes
 ```
 
-### 2. Setting Up the Jupyter Notebook Environment
-
-Ensure you have a Jupyter notebook environment installed. If not, you can install JupyterLab using pip:
-
-```
-pip3 install jupyterlab
-```
-
-Also make sure to have ipywidgets installed to correctly display progress bars:
-
-```
-pip3 install ipywidgets
-```
-
-### 3. Creating a Virtual Environment
+### 2. Creating a Virtual Environment
 
 Create a virtual environment in the directory:
 
@@ -53,7 +39,7 @@ python -m venv myenv
 
 Replace `myenv` with your preferred name for the virtual environment.
 
-### 4. Activating the Virtual Environment
+### 3. Activating the Virtual Environment
 
 Activate the virtual environment:
 
@@ -67,9 +53,9 @@ On **Windows**:
 myenv\Scripts\activate
 ```
 
-### 5. Installing Dependencies
+### 4. Installing Dependencies
 
-Install the required Python libraries:
+Install the required Python dependencies, including an installation of JupyterLab:
 
 ```
 pip3 install -r requirements.txt
@@ -80,26 +66,16 @@ pip3 install -r requirements.txt
 - Install CUDA from [NVIDIA's CUDA Downloads Page](https://developer.nvidia.com/cuda-downloads).
 - Install PyTorch with CUDA 12.1 support by following instructions specific to your device at [PyTorch's Get Started Page](https://pytorch.org/get-started/locally/).
 
-### 6. Adding Your Virtual Environment to Jupyter
+### 5. Launching JupyterLab
 
-Add your virtual environment to your Jupyter environment:
-
-```
-python -m ipykernel install --user --name=myenv
-```
-
-Replace `myenv` with the name of your virtual environment.
-
-### 7. Launching JupyterLab
-
-Launch JupyterLab:
+Launch JupyterLab directly from within your activated virtual environment:
 
 ```
 jupyter lab
 ```
 
-### 8. Running the Notebook
+### 6. Running the Notebook
 
-In JupyterLab, navigate to `demo.ipynb`. Make sure to switch the notebook's kernel to your virtual environment to access the installed dependencies.
+In JupyterLab, navigate to `demo.ipynb`. JupyterLab will automatically use the Python interpreter and libraries installed in your activated virtual environment.
 
 You're now ready to run the code in `demo.ipynb`.
